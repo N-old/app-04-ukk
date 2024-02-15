@@ -1,4 +1,4 @@
-<div class="w-full flex px-10 bg-seconder py-3 justify-between items-center">
+<div class="w-full flex px-12 bg-seconder py-3 justify-between items-center">
     <div class="">
         <a href="#">
             <img src="{{ asset('images/bookspark.png') }}" class="w-40" alt="">
