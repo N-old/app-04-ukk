@@ -1,39 +1,32 @@
-<footer class="w-full bg-seconder flex p-12 justify-between items-center font-semibold">
+<footer class="w-full bg-seconder flex p-12 items-center font-semibold">
     <div class="container">
-        <div class="row flex items-end">
-            <div class="grid grid-cols-3">
-                <div class="">
-                    <a href="/"><img src="{{asset('images/bookspark.png')}}" alt="Logo"></a>
-                    <h1 class="ml-8 text-xl">Explore lautan buku</h1>
+        <div class="row text-xl font-semibold grid grid-cols-3 gap-4 w-full">
+            <div>
+                <a href="/" class="text-4xl">BookSpark</a>
+            </div>
+            <div class="text-center">
+                <h1>Slogan</h1>
+                <h3>Explroe the sea of Book</h3>
+            </div>
+            <div class="rows-3 text-left">
+                <h1 class="text-center">Contact Us</h1>
+                <div class="flex gap-4">
+                    <h4>Alamat</h4>
+                    <p class="text-sm">Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118</p>
                 </div>
-                <div class="mt-8 text-center">
-                    <h1 class="ml-8 text-2xl">Slogan</h1>
-                    <h4 class="text-xl mt-2">Mari baca buku karena baca buku <br> adalah gudang ilmu</h4>
-                </div>
-                <div class="grid grid-rows-4 mt-8">
-                    <div class="text-2xl">Kontak Kami</div>
-                    <div class="flex justify-center items-start">
-                        <h1 class="text-xl">About</h1>
-                        <div class="ml-8 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, dolorum!</div>
-                    </div>
-                    <div class="flex justify-center items-start">
-                        <h1 class="text-xl">Alamat</h1>
-                        <div class="ml-8 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi, dolorum!</div>
-                    </div>
-                    <div class="flex items-center">
-                        <h1 class="text-xl">Social</h1>
-                        <div class="flex ml-8 justify-end items-center">
-                            <a href="#" class="mx-2"><img src="{{asset('images/facebook.png')}}" class="w-4" alt="Logo"></a>
-                            <a href="#" class="mx-2"><img src="{{asset('images/twitter.png')}}" class="w-7" alt="Logo"></a>
-                            <a href="#" class="mx-2"><img src="{{asset('images/instagram.png')}}" class="w-7" alt="Logo"></a>
-                        </div>
+                <div class="flex gap-6 mt-2">
+                    <h4>Social</h4>
+                    <div class="flex gap-4 items-center">
+                        <img src="{{ asset('images/instagram.png') }}" class="h-6" alt="social">
+                        <img src="{{ asset('images/twitter.png') }}" class="h-6" alt="social">
+                        <img src="{{ asset('images/facebook.png') }}" class="h-6" alt="social">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row mt-12 mx-64">
             <div class="flex justify-center items-center border-t-2 border-primary ">
-                <h1>Copyright &copy 2024 Made with Arnold</h1>
+                <h1>Copyright &copy 2024 BookSpark Made with ❤️ by <a href="https://github.com/N-old">Arnold</a></h1>
             </div>
         </div>
     </div>

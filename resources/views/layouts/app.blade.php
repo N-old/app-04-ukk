@@ -15,6 +15,40 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+        <style>
+            .rating:not(:checked) > input {
+                    position: absolute;
+                    appearance: none;
+                  }
+                  
+                  .rating:not(:checked) > label {
+                    float: right;
+                    cursor: pointer;
+                    font-size: 50px;
+                    color: #666;
+                  }
+                  
+                  .rating:not(:checked) > label:before {
+                    content: '★';
+                  }
+                  
+                  .rating > input:checked + label:hover,
+                  .rating > input:checked + label:hover ~ label,
+                  .rating > input:checked ~ label:hover,
+                  .rating > input:checked ~ label:hover ~ label,
+                  .rating > label:hover ~ input:checked ~ label {
+                    color: #e58e09;
+                  }
+                  
+                  .rating:not(:checked) > label:hover,
+                  .rating:not(:checked) > label:hover ~ label {
+                    color: #ff9e0b;
+                  }
+                  
+                  .rating > input:checked ~ label {
+                    color: #ffa723;
+                  }
+        </style>
         <div class="min-h-screen text-white bg-gray-100 dark:bg-gray-900">
             @include('layouts.navbar')
             <!-- Page Content -->

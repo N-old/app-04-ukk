@@ -28,13 +28,16 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('partials.register');
 });
+Route::get('/forgot', function () {
+    return view('partials.forgot');
+});
 Route::get('/dashboard', function () {
     return view('dashboard.dashboard');
 });
 Route::get('/dashboard/data-table', function () {
     return view('dashboard.partials.data-table');
 });
-Route::get('/dashboard/card-data', function () {
+Route::get('/dashboard/card-book', function () {
     return view('dashboard.partials.card-data');
 });
 Route::get('/dashboard/form', function () {

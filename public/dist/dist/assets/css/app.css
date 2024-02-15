@@ -71,11 +71,11 @@
  * 6. Responsive
  */
 .color-primary {
-  color: #5A8DEE;
+  color: #88AB8E;
 }
 
 .color-secondary {
-  color: #475F7B;
+  color: #AFC8AD;
 }
 
 .color-success {
@@ -919,7 +919,7 @@ footer {
 }
 .card.card-statistic {
   box-shadow: 1px 2px 5px rgba(47, 170, 244, 0.5);
-  background: linear-gradient(to bottom, #25a6f1, #54b9ff);
+  background: linear-gradient(to bottom, #88AB8E, #AFC8AD);
   border: none;
 }
 .card.card-statistic .card-title {
@@ -1507,3 +1507,4 @@ footer {
 .bg-gray-700 {
   background-color: #4a5568 !important;
 }
+
