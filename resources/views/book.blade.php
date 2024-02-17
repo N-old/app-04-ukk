@@ -23,48 +23,48 @@
                     <h2 class="text-3xl font-semibold">Book</h2>
                     <h6>This is Page of Book</h6>
                 </div>
-                <div class="grid grid-cols-3 gap-4">
+                <div class="grid grid-cols-4 gap-4">
                     <a href="/book-detail">
-                        <div class="bg-white p-3 shadow-md rounded-md">
+                        <div class="bg-white shadow-md rounded-md py-2">
                             <div class="grid justify-center">
-                                <img src="{{ asset('images/comic.png') }}" class="h-64" alt="">
+                                <img src="{{ asset('images/comic.png') }}" class="w-64" alt="">
                             </div>
-                            <div class="flex justify-between items-start mt-2">
+                            <div class="grid justify-start items-start mt-2 px-2">
                                 <h3 class="text-md font-bold">Boruto:Naruto next generation</h3>
-                                <h6>Rating</h6>
+                                <p class="text-slate-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, id.</p>
                             </div>
                         </div>
                     </a>
                     <a href="/book-detail">
-                        <div class="bg-white p-3 shadow-md rounded-md">
+                        <div class="bg-white shadow-md rounded-md py-2">
                             <div class="grid justify-center">
-                                <img src="{{ asset('images/comic.png') }}" class="h-64" alt="">
+                                <img src="{{ asset('images/comic.png') }}" class="w-64" alt="">
                             </div>
-                            <div class="flex justify-between items-start mt-2">
-                                <h3 class="text-md font-bold">Title</h3>
-                                <h6>Rating</h6>
+                            <div class="grid justify-start items-start mt-2 px-2">
+                                <h3 class="text-md font-bold">Boruto:Naruto next generation</h3>
+                                <p class="text-slate-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, id.</p>
                             </div>
                         </div>
                     </a>
                     <a href="/book-detail">
-                        <div class="bg-white p-3 shadow-md rounded-md">
+                        <div class="bg-white shadow-md rounded-md py-2">
                             <div class="grid justify-center">
-                                <img src="{{ asset('images/comic.png') }}" class="h-64" alt="">
+                                <img src="{{ asset('images/comic.png') }}" class="w-64" alt="">
                             </div>
-                            <div class="flex justify-between items-start mt-2">
-                                <h3 class="text-md font-bold">Title</h3>
-                                <h6>Rating</h6>
+                            <div class="grid justify-start items-start mt-2 px-2">
+                                <h3 class="text-md font-bold">Boruto:Naruto next generation</h3>
+                                <p class="text-slate-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, id.</p>
                             </div>
                         </div>
                     </a>
                     <a href="/book-detail">
-                        <div class="bg-white p-3 shadow-md rounded-md">
+                        <div class="bg-white shadow-md rounded-md py-2">
                             <div class="grid justify-center">
-                                <img src="{{ asset('images/comic.png') }}" class="h-64" alt="">
+                                <img src="{{ asset('images/comic.png') }}" class="w-64" alt="">
                             </div>
-                            <div class="flex justify-between items-start mt-2">
-                                <h3 class="text-md font-bold">Title</h3>
-                                <h6>Rating</h6>
+                            <div class="grid justify-start items-start mt-2 px-2">
+                                <h3 class="text-md font-bold">Boruto:Naruto next generation</h3>
+                                <p class="text-slate-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, id.</p>
                             </div>
                         </div>
                     </a>
