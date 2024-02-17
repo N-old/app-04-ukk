@@ -19,6 +19,9 @@ Route::get('/', function () {
 Route::get('/book', function () {
     return view('book');
 });
+Route::get('/book-detail', function () {
+    return view('book-detail');
+});
 Route::get('/profil', function () {
     return view('profile');
 });
