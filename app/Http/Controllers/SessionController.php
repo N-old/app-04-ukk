@@ -11,10 +11,23 @@ class SessionController extends Controller
         return view('login');
     }
 
-    public function dologin(Request $request)
+    function dologin(Request $request)
     {
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
+
+        $data = $request->only('email', 'password');
+        if(auth()->attempt($data)){
+            return redirect('dashboard');
+        }
+        return redirect('login');
+
+    }
+    function logout ()
+    {
+        session()->flush();
+        return redirect('login');
+    }
 }
