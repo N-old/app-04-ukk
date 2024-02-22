@@ -1,10 +1,10 @@
-<div class="w-full flex px-2 md:7px lg:px-14 bg-seconder py-1 md:py-2 lg:py-3 justify-between items-center text-xs md:text-lg lg:text-xl">
+<div class="w-full sticky top-0 flex px-2 md:7px lg:px-14 bg-seconder py-1 md:py-2 lg:py-3 justify-between items-center text-xs md:text-lg lg:text-xl">
     <div class="">
         <a href="/">
             <img src="{{ asset('images/bookspark.png') }}" class="w-20 md:w-42 lg:w-40" alt="">
         </a>
     </div>
-    <div class="flex text-xs md:text-xl lg:text-2xl gap-2 md:gap-4 lg:gap-6 font-bold">
+    <div class="flex text-md md:text-lg lg:text-xl gap-2 md:gap-4 lg:gap-6 font-bold">
         <a href="/">Home</a>
         <a href="/book">Book</a>
         <a href="/about">About Us</a>

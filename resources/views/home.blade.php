@@ -158,10 +158,10 @@
                 <img src="{{ asset('images/preview3.png') }}" class="w-26 md:w-64 lg:w-80" alt="preview">
             </div>
         </div>
-        {{-- <div id="location" class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
+        <div id="location" class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
             <div class="grid justify-center items-center text-center">
-                <h2 class="text-3xl font-semibold">Location</h2>
-                <h6>Our place is very easy to reach because there is lots of public transportation</h6>
+                <h2 class="text-lg md:text-3xl font-semibold">Location</h2>
+                <h6 class="text-sm md:text-xl lg:text-2xl">Our place is very easy to reach because there is lots of public transportation</h6>
             </div>
             <div class="w-full mt-4">
                 <iframe class="w-full rounded-xl"
@@ -169,6 +169,6 @@
                     style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-        </div> --}}
+        </div>
     </div>
 @endsection
