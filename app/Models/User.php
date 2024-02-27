@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function ulasan()
+    {
+        return $this->belongsTo(Ulasan::class, 'user_id');
+    }
+
+    public function pinjam()
+    {
+        return $this->belongsTo(Pinjam::class, 'user_id');
+    }
+
+    public function koleksi()
+    {
+        return $this->belongsTo(Koleksi::class, 'user_id');
+    }
 }
