@@ -78,7 +78,7 @@
                                             <td>Ridwan</td>
                                             <td>10</td>
                                             <td class="d-flex">
-                                                <a href="#" class="btn btn-primary btn-sm"></i></a>
+                                                <a href="#" class="btn btn-primary btn-sm"></i></a>a
                                                 <a href="#" class="btn btn-warning btn-sm"></i></a>
                                                 <a href="#" class="btn btn-danger btn-sm"></i></a>
                                             </td>
