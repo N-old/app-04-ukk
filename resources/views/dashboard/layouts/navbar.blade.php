@@ -14,9 +14,9 @@
                     <div class="d-none d-md-block d-lg-inline-block">Hi, N-old</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
+                    <a class="dropdown-item" href="/profil"><i data-feather="user"></i> Account</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                    <a class="dropdown-item" href="/logout"><i data-feather="log-out"></i> Logout</a>
                 </div>
             </li>
         </ul>
