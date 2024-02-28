@@ -11,13 +11,8 @@ class Pinjam extends Model
 
     protected $guarded = ['id'];
 
-    public function buku()
-    {
-        return $this->belongsTo(Buku::class, 'buku_id');
-    }
-
     public function detail()
     {
-        return $this->belongsTo(detailPinjam::class, 'pinjam_id');
+        return $this->hasMany(detailPinjam::class, 'pinjam_id');
     }
 }

@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Koleksi;
+use App\Models\Pinjam;
+use App\Models\Ulasan;
+use App\Models\Kategori;
 
 class Buku extends Model
 {

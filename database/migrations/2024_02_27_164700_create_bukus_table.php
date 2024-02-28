@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kategori', function (Blueprint $table) {
+        Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique()->nullable();
+            $table->string('icon')->nullable();
             $table->string('name')->unique();
             $table->timestamps();
         });
 
-        Schema::create('buku', function (Blueprint $table) {
+        Schema::create('bukus', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique()->nullable();
@@ -27,11 +29,9 @@ return new class extends Migration
             $table->integer('stok');
             $table->text('deskripsi');
             $table->string('cover')->nullable();
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')
-                ->references('id')
-                ->on('kategori')
-                ->onDelete('cascade');
+            $table->foreignId('kategori_id')
+                ->constrained()
+                ->cascadeOnDelete();
             // $table->foreignId('kategori_id')
             //     ->constrained()
             //     ->cascadeOnDelete();
@@ -44,7 +44,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kategori');
-        Schema::dropIfExists('buku');
+        Schema::dropIfExists('kategoris');
+        Schema::dropIfExists('bukus');
     }
 };

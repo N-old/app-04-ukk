@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Ulasan;
+use App\Models\Pinjam;
+use App\Models\Koleksi;
 
 class User extends Authenticatable
 {
@@ -50,16 +53,16 @@ class User extends Authenticatable
 
     public function ulasan()
     {
-        return $this->belongsTo(Ulasan::class, 'user_id');
+        return $this->hasMany(Ulasan::class, 'user_id');
     }
 
     public function pinjam()
     {
-        return $this->belongsTo(Pinjam::class, 'user_id');
+        return $this->hasMany(Pinjam::class, 'user_id');
     }
 
     public function koleksi()
     {
-        return $this->belongsTo(Koleksi::class, 'user_id');
+        return $this->hasMany(Koleksi::class, 'user_id');
     }
 }
