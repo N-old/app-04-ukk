@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
-use App\Models\Buku;
-use App\Http\Requests\StoreBukuRequest;
-use App\Http\Requests\UpdateBukuRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Pinjam;
+use App\Http\Requests\StorePinjamRequest;
+use App\Http\Requests\UpdatePinjamRequest;
 
-class BukuController extends Controller
+class PinjamController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class BukuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBukuRequest $request)
+    public function store(StorePinjamRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class BukuController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Buku $buku)
+    public function show(Pinjam $pinjam)
     {
         //
     }
@@ -43,7 +44,7 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Buku $buku)
+    public function edit(Pinjam $pinjam)
     {
         //
     }
@@ -51,7 +52,7 @@ class BukuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBukuRequest $request, Buku $buku)
+    public function update(UpdatePinjamRequest $request, Pinjam $pinjam)
     {
         //
     }
@@ -59,7 +60,7 @@ class BukuController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Buku $buku)
+    public function destroy(Pinjam $pinjam)
     {
         //
     }

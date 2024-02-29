@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('penerbit');
             $table->year('tahun');
             $table->integer('stok');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->string('cover')->nullable();
             $table->foreignId('kategori_id')
                 ->constrained()

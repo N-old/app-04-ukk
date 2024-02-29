@@ -20,12 +20,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-    ];
+
+     protected $guarded = ['id'];
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    //     'role',
+    // ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,9 +49,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getRouteKeyName(){
-        return 'slug';
-    }
+    // public function getRouteKeyName(){
+    //     return 'slug';
+    // }
 
     public function ulasan()
     {

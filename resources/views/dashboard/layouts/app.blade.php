@@ -18,6 +18,7 @@
 
 <body>
     <div id="app">
+        @include('sweetalert::alert')
         @include('dashboard.layouts.sidebar')
         <div id="main">
             @include('dashboard.layouts.navbar')

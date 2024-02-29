@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/assets/compiled/css/auth.css') }}"> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @include('sweetalert::alert')
 </head>
 <body>
     <div class="flex h-screen">
+        @include('sweetalert::alert')
         <div id="auth-left" class="w-2/5 bg-primary grid justify-center items-center margin-auto h-full">
             <img src="{{ asset('images/logo.png') }}" alt="logo">
             <h1 class="text-3xl pl-9 font-bold text-white">Explore the sea of ​​books with book spark</h1>
@@ -27,7 +29,8 @@
                     <h1 class="text-center font-bold text-3xl">Register</h1>
                     <a class="text-left" href="/">Back to the site</a>
                 </div>
-                <form action="index.html" class="mt-8">
+                <form action="{{ route ('doregister')}}" method="POST" class="mt-8">
+                    @csrf
                     <div class="flex flex-col mb-1">
                         <label class="text-black text-lg" for="email">Name</label>
                         <input type="text" class="text-slate-400 p-2 mt-4" name="name" placeholder="Name">
