@@ -14,7 +14,7 @@
                                 <div class='p-2'>
                                     <h3 class='card-title'>Data Buku</h3>
                                     <div class="card-right d-flex align-items-center">
-                                        <p>$50 </p>
+                                        <p>{{ $data['sumbox']['buku'] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +28,7 @@
                                 <div class='p-2'>
                                     <h3 class='card-title'>Data User</h3>
                                     <div class="card-right d-flex align-items-center">
-                                        <p>$50 </p>
+                                        <p>{{ $data['sumbox']['user'] }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -42,7 +42,7 @@
                                 <div class='p-2'>
                                     <h3 class='card-title'>Data Peminjaman</h3>
                                     <div class="card-right d-flex align-items-center">
-                                        <p>$50 </p>
+                                        <p>{{ $data['sumbox']['pinjam'] }}</p>
                                     </div>
                                 </div>
                             </div>

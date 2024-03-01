@@ -15,13 +15,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        if (Auth::user()->role !== 'pembaca') {
+        if (Auth::user()->role !== 'user') {
             $data = [
                 'sumbox' => [
                     'buku' => Buku::count(),
                     'pinjam' => Pinjam::count(),
                     'ulasan' => Ulasan::count(),
-                    'pembaca' => User::where('role', 'pembaca')->count(),
+                    'user' => User::where('role', 'user')->count(),
                 ],
                 'pinjam' => Pinjam::with('user')
                     ->latest()
@@ -54,6 +54,7 @@ class DashboardController extends Controller
                     ->get(),
             ];
         }
+        
 
         return view('dashboard.dashboard')
             ->with([

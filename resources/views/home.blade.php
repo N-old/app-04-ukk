@@ -64,45 +64,29 @@
                 <h6 class="text-sm md:text-xl lg:text-2xl">We have advantages over other digital libraries</h6>
             </div>
             <div class="grid grid-cols-3 gap-4 md:gap-8 mt-4 md:mt-12">
-                <div
-                    class="grid rounded-md md:rounded-lg lg:rounded-3xl shadow-md md:shadow-lg justify-center items-center text-center h-50 md:h-90">
+                @foreach ($kategori as $item)
                     <div
-                        class="griditems-center justify-center py-8 md:py-12 rounded-md md:rounded-lg lg:rounded-xl mx-2 md:mx-8 lg:mx-16 mt-4 md:mt-8">
-                        <img src="{{ asset('images/comic.png') }}" class="w-16  md:w-20 lg:w-32" alt="logo">
+                        class="grid rounded-md md:rounded-lg lg:rounded-3xl shadow-md md:shadow-lg justify-center items-center text-center h-50 md:h-90">
+                        <div
+                            class="griditems-center justify-center py-8 md:py-12 rounded-md md:rounded-lg lg:rounded-xl mx-2 md:mx-8 lg:mx-16 mt-4 md:mt-8">
+                            <img src="{{ asset($item->icon) }}" class="w-16  md:w-20 lg:w-32" alt="{{ $item->name }}">
+                        </div>
+                        <div class="text-center my-4 mx-2">
+                            <h3 class="font-bold">{{ $item->name }}</h3>
+                        </div>
                     </div>
-                    <div class="text-center my-4 mx-2">
-                        <h3 class="font-bold">Comic</h3>
-                    </div>
-                </div>
-                <div
-                    class="grid rounded-md md:rounded-lg lg:rounded-3xl shadow-md md:shadow-lg justify-center items-center text-center h-50 md:h-90">
-                    <div
-                        class="griditems-center justify-center py-8 md:py-12 rounded-md md:rounded-lg lg:rounded-xl mx-2 md:mx-8 lg:mx-16 mt-4 md:mt-8">
-                        <img src="{{ asset('images/novel.png') }}" class="w-16  md:w-20 lg:w-32" alt="logo">
-                    </div>
-                    <div class="text-center my-4 mx-2">
-                        <h3 class="font-bold">Novel</h3>
-                    </div>
-                </div>
-                <div
-                    class="grid rounded-md md:rounded-lg lg:rounded-3xl shadow-md md:shadow-lg justify-center items-center text-center h-50 md:h-90">
-                    <div
-                        class="griditems-center justify-center py-8 md:py-12 rounded-md md:rounded-lg lg:rounded-xl mx-2 md:mx-8 lg:mx-16 mt-4 md:mt-8">
-                        <img src="{{ asset('images/edu.png') }}" class="w-16 md:w-20 lg:w-32"alt="logo">
-                    </div>
-                    <div class="text-center my-4 mx-2">
-                        <h3 class="font-bold">Edukasi</h3>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
-        <div id="testimoni" class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
+        <div id="testimoni"
+            class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
             <div class="grid justify-center items-center text-center">
                 <h2 class="text-lg md:text-3xl font-semibold">Testimonial</h2>
                 <h6 class="text-sm md:text-xl lg:text-2xl">This a review about the library from any other customers</h6>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 my-4 md:my-8">
-                <div class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
+                <div
+                    class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
                     <div class="flex justify-center items-center">
                         <img src="{{ asset('images/milea.png') }}" class="w-12 lg:w-28" alt="logo">
                     </div>
@@ -112,7 +96,8 @@
                         <h6>This place has so much collection book, there was a book about void centuries</h6>
                     </div>
                 </div>
-                <div class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
+                <div
+                    class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
                     <div class="flex justify-center items-center">
                         <img src="{{ asset('images/zoro.png') }}" class="w-12 lg:w-28" alt="logo">
                     </div>
@@ -122,7 +107,8 @@
                         <h6>I don’t know where is it but i think robin would like this place</h6>
                     </div>
                 </div>
-                <div class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
+                <div
+                    class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
                     <div class="flex justify-center items-center">
                         <img src="{{ asset('images/movis.png') }}" class="w-12 lg:w-28" alt="logo">
                     </div>
@@ -132,7 +118,8 @@
                         <h6>This place very helpful for me to study this place give a chill vibes</h6>
                     </div>
                 </div>
-                <div class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
+                <div
+                    class="grid justify-center items-center border-2 border-seconder rounded-md md:rounded-xl py-4 md:py-8 lg:py-14">
                     <div class="flex justify-center items-center">
                         <img src="{{ asset('images/arhan.png') }}" class="w-12 lg:w-28" alt="logo">
                     </div>
@@ -144,7 +131,8 @@
                 </div>
             </div>
         </div>
-        <div id="preview" class="w-full grid justify-center items-center h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
+        <div id="preview"
+            class="w-full grid justify-center items-center h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
             <div class="grid justify-center items-center text-center">
                 <h2 class="text-lg md:text-3xl font-semibold">Preview</h2>
                 <h6 class="text-sm md:text-xl lg:text-2xl">There is preview about this place</h6>
@@ -158,10 +146,12 @@
                 <img src="{{ asset('images/preview3.png') }}" class="w-26 md:w-64 lg:w-80" alt="preview">
             </div>
         </div>
-        <div id="location" class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
+        <div id="location"
+            class="w-full h-fit bg-white text-black bg-cover bg-center bg-no-repeat px-4 md:10px lg:px-14 py-2 md:py-4 lg:py-6 text-xs md:text-lg lg:text-xl">
             <div class="grid justify-center items-center text-center">
                 <h2 class="text-lg md:text-3xl font-semibold">Location</h2>
-                <h6 class="text-sm md:text-xl lg:text-2xl">Our place is very easy to reach because there is lots of public transportation</h6>
+                <h6 class="text-sm md:text-xl lg:text-2xl">Our place is very easy to reach because there is lots of public
+                    transportation</h6>
             </div>
             <div class="w-full mt-4">
                 <iframe class="w-full rounded-xl"

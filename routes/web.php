@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\KategoriController;
 use App\Http\Controllers\Dashboard\PinjamController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PustakaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UlasanController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('/pustaka', PustakaController::class);
 
 // Route::get('/buku', function () {
 //     return view ('dashboard.buku.index');

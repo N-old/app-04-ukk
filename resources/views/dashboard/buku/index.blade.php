@@ -29,11 +29,11 @@
         <section id="content-types">
             <div class="row">
                 @foreach ($buku as $item)
-                <div class="col-xl-3 col-md-4 col-sm-6">
+                <div class="col-xl-4 col-md-6 col-sm-6">
                     <div class="card">
                         <div class="card-content">
                             <img src="{{ asset($item->cover) }}" alt="{{ $item->name }}"
-                                class="card-img-top img-fluid" style="height: 250px;">
+                                class="card-img-top img-fluid" style="height: 400px;">
                             <div class="card-body">
                                 <h5 class="card-title">{{$item->name}}</h5>
                                 <p class="card-text">
@@ -54,7 +54,7 @@
                                     <i data-feather="edit"></i>
                                 </div>
                             </a>
-                            <a href="{{ route('buku.destroy', $item->slug) }}" class="btn btn-sm btn-danger mt-2"
+                            <a href="{{ route('buku.destroy', $item->slug) }}" class="btn btn-sm btn-danger"
                                 data-confirm-delete="true" data-toggle="tooltip" title="Hapus Pengguna">
                                 <div><i data-feather="trash"
                                     onclick="event.preventDefault(); this.closest('a').click();"></i>

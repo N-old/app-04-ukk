@@ -34,120 +34,68 @@
             color: #ffa723;
         }
     </style>
+    <div class="w-full flex justify-center items-center bg-white text-black py-2 text-4xl">
+        <h1>{{ $title }}</h1>
+    </div>
     <div class="w-full bg-white text-black flex px-24 py-12">
         <div class="w-1/3">
             <div class="">
-                <img src="{{ asset('images/comic.png') }}" class="w-64" alt="">
-            </div>
-            <div class="">
-                <h2>Ilham</h2>
+                <img src="{{ asset($buku->cover) }}" class="w-64" alt="{{ $buku->name }}">
             </div>
         </div>
         <div class="w-2/3">
             <div class="flex justify-between items-start">
                 <div class="title">
-                    <h2 class="text-3xl font-bold">Boruto:Naruto Next Generation</h2>
-                </div>
-                <div class="rating">
-                    <input value="5" name="rate" id="star5" type="radio">
-                    <label title="text" for="star5"></label>
-                    <input value="4" name="rate" id="star4" type="radio">
-                    <label title="text" for="star4"></label>
-                    <input value="3" name="rate" id="star3" type="radio" checked="">
-                    <label title="text" for="star3"></label>
-                    <input value="2" name="rate" id="star2" type="radio">
-                    <label title="text" for="star2"></label>
-                    <input value="1" name="rate" id="star1" type="radio">
-                    <label title="text" for="star1"></label>
-                    <div class="">
-                        <p>3.420 Votes</p>
-                    </div>
+                    <h2 class="text-3xl font-bold">{{ $buku->name }}</h2>
                 </div>
             </div>
             <div class="sinopsis">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo modi, provident obcaecati asperiores fugit qui impedit delectus officiis nam excepturi ex rerum ratione laboriosam eaque, adipisci laudantium nihil illum voluptate vero natus minima et maiores omnis fugiat. Nam, tempore ad.</p>
+                <p>{{ $buku->deskripsi }}</p>
             </div>
             <div class="book-detail mt-3">
                 <ul>
-                    <li class="grid grid-cols-4"><span>Writer:</span> Masashi Kishimoto</li>
-                    <li class="grid grid-cols-4"><span>Publisher:</span> Shounen Jump</li>
-                    <li class="grid grid-cols-4"><span>Date Released:</span> 2016</li>
-                    <li class="grid grid-cols-4"><span>Categories:</span> Comic</li>
+                    <li class="grid grid-cols-4"><span>Penulis:</span> {{ $buku->penulis }}</li>
+                    <li class="grid grid-cols-4"><span>Penerbit:</span> {{ $buku->penerbit }}</li>
+                    <li class="grid grid-cols-4"><span>Tahun Rilis:</span> {{ $buku->tahun }}</li>
+                    <li class="grid grid-cols-4"><span>Kategori:</span> {{ $kategori->name }}</li>
                 </ul>
             </div>
-            <div class="grid justify-start">
-                <div class="flex items-start justify-start gap-20">
-                    <h3>Review Book:</h3>
-                    <textarea name="" id="" cols="50" rows="3"></textarea>
-                </div>
-                <div class="rating">
-                    <input value="5" name="rate" id="star5" type="radio">
-                    <label title="text" for="star5"></label>
-                    <input value="4" name="rate" id="star4" type="radio">
-                    <label title="text" for="star4"></label>
-                    <input value="3" name="rate" id="star3" type="radio" checked="">
-                    <label title="text" for="star3"></label>
-                    <input value="2" name="rate" id="star2" type="radio">
-                    <label title="text" for="star2"></label>
-                    <input value="1" name="rate" id="star1" type="radio">
-                    <label title="text" for="star1"></label>
-                </div>
+            <div class="grid justify-start mt-8">
+                <form action="{{ route('pustaka.store') }}" method="post">
+                    <div class="flex items-start justify-start gap-20">
+                        <h3>Review Book:</h3>
+                        <textarea name="komentar" class="border-2 border-black rounded-md p-1 " id="komentar" cols="50" rows="3"></textarea>
+                    </div>
+                    <div class="rating">
+                        <input value="5" name="rating" id="star5" type="radio">
+                        <label title="text" for="star5"></label>
+                        <input value="4" name="rating" id="star4" type="radio">
+                        <label title="text" for="star4"></label>
+                        <input value="3" name="rating" id="star3" type="radio" checked="">
+                        <label title="text" for="star3"></label>
+                        <input value="2" name="rating" id="star2" type="radio">
+                        <label title="text" for="star2"></label>
+                        <input value="1" name="rating" id="star1" type="radio">
+                        <label title="text" for="star1"></label>
+                    </div>
+                    <div class="flex gap-4 text-md mt-4">
+                        <a href="" class="bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-md">Tambah Koleksi</a>
+                        <button type="submit" class="bg-green-700 hover:bg-green-800 text-white p-2 rounded-md">Posting Ulasan</button>
+                    </div>
+                </form>
             </div>
             <div class="grid grid-cols-4 gap-8">
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
+                @foreach ($ulasan as $item)
+                    <div class="bg-white p-3 shadow-md rounded-md">
+                        <div class="flex justify-between px-2">
+                            <h4>{{ $item->name }}</h4>
+                            <p>{{ $item->rating }}</p>
+                        </div>
+                        <div class="p-2">
+                            <p>{{ $item->komentar }}</p>
+                        </div>
                     </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
-                    </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
-                    </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
-                    </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
-                    </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
-                <div class="bg-white p-3 shadow-md rounded-md">
-                    <div class="flex justify-between px-2">
-                        <h4>Ridwan</h4>
-                        <p>3.7/5</p>
-                    </div>
-                    <div class="p-2">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis, adipisci.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
         {{-- <div class="text-3xl font-bold text-center grid justify-center">

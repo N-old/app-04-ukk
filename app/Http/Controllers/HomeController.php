@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $kategori = Kategori::paginate(3);
+
+        return view('home')
+            ->with([
+                'title' => 'Home',
+                'kategori' => $kategori,
+            ]);
     }
 }
