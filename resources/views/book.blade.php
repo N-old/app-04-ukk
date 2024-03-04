@@ -17,7 +17,7 @@
                     <h6>This is Page of Book</h6>
                 </div>
                 <div class="grid grid-cols-3 gap-4">
-                    @foreach ($buku as $item)
+                    @foreach ($pustaka as $item)
                         <div class="bg-white shadow-md rounded-md py-2">
                             <a href="{{ route('pustaka.show', $item->slug) }}" title="View Student">
                                 <div class="grid justify-center">

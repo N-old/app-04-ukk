@@ -14,7 +14,7 @@ class PinjamController extends Controller
      */
     public function index()
     {
-        $pinjam = Pinjam::with('user')
+        $peminjaman = Pinjam::with('user')
             ->orderBy('user_id')
             ->get();
 
@@ -23,8 +23,8 @@ class PinjamController extends Controller
         return view('dashboard.pinjam.index')
             ->with([
                 'title' => 'Data Peminjaman',
-                'active' => 'pinjam',
-                'pinjam' => $pinjam,
+                'active' => 'peminjaman',
+                'peminjaman' => $peminjaman,
         ]);
     }
     /**

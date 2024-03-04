@@ -6,6 +6,11 @@
                 <div class="col-12 col-md-6">
                     <h3>{{ $title }}</h3>
                     <p class="text-subtitle text-muted">Disini anda dapat mengelola {{$title}} </p>
+                    {{-- <a href="{{ route('buku.export')}}" class="btn btn-primary btn-sm mb-3"data-toggle="tooltip" title="Lihat Pengguna">
+                        <div class="form-control-icon">
+                            <i data-feather="plus"></i>
+                        </div>
+                    </a> --}}
                     <a href="{{ route('buku.create')}}" class="btn btn-primary btn-sm mb-3"data-toggle="tooltip" title="Lihat Pengguna">
                         <div class="form-control-icon">
                             <i data-feather="plus"></i>

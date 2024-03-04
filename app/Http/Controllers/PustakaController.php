@@ -3,36 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
-use Illuminate\Http\Request;
+use App\Models\Koleksi;
+use App\Models\Pinjam;
+use App\Models\Ulasan;
+use Illuminate\Support\Facades\Auth;
 
 class PustakaController extends Controller
 {
     public function index()
     {
-        $buku = Buku::with('kategori')
+        $pustaka = Buku::with('kategori')
             ->orderBy('name')
             ->get();
         return view('book')
             ->with([
                 'title' => 'Halaman Buku',
-                'buku' => $buku
+                'pustaka' => $pustaka
             ]);
     }
 
     public function show(Buku $buku)
     {
-        $buku = Buku::with('kategori', 'ulasan')->find(1);
+        $pustaka = Buku::where('id', $buku->id)
+            ->with(['kategori', 'ulasan', 'ulasan.user'])
+            ->withAvg('ulasan', 'rating')
+            ->first();
+        
+        $koleksi = Koleksi::where('user_id', Auth::id())
+            ->where('buku_id', $buku->id)
+            ->exists();
+        
+        $ulasan = Ulasan::where('user_id', Auth::id())
+            ->where('buku_id', $buku->id)
+            ->first();
 
-        // Data kategori dan ulasan sudah dimuat
-        $kategori = $buku->kategori;
-        $ulasan = $buku->ulasan;
-
+        $pinjam = Pinjam::where('user_id', Auth::id())
+            ->where('buku_id', $buku->id)
+            ->exists();
+        
         return view('book-detail')
             ->with([
                 'title' => 'Halaman Detail Buku',
-                'buku' => $buku,
-                'kategori' => $kategori,
-                'ulasan' => $ulasan
+                'pustaka' => $pustaka,
+                'koleksi' => $koleksi,
+                'ulasan' => $ulasan,
+                'pinjam' => $pinjam
             ]);
     }
 }

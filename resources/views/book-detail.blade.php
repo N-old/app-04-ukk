@@ -40,28 +40,31 @@
     <div class="w-full bg-white text-black flex px-24 py-12">
         <div class="w-1/3">
             <div class="">
-                <img src="{{ asset($buku->cover) }}" class="w-64" alt="{{ $buku->name }}">
+                <img src="{{ asset($pustaka->cover) }}" class="w-64" alt="{{ $pustaka->name }}">
             </div>
         </div>
         <div class="w-2/3">
             <div class="flex justify-between items-start">
                 <div class="title">
-                    <h2 class="text-3xl font-bold">{{ $buku->name }}</h2>
+                    <h2 class="text-3xl font-bold">{{ $pustaka->name }}</h2>
                 </div>
             </div>
             <div class="sinopsis">
-                <p>{{ $buku->deskripsi }}</p>
+                <p>{{ $pustaka->deskripsi }}</p>
             </div>
             <div class="book-detail mt-3">
                 <ul>
-                    <li class="grid grid-cols-4"><span>Penulis:</span> {{ $buku->penulis }}</li>
-                    <li class="grid grid-cols-4"><span>Penerbit:</span> {{ $buku->penerbit }}</li>
-                    <li class="grid grid-cols-4"><span>Tahun Rilis:</span> {{ $buku->tahun }}</li>
-                    <li class="grid grid-cols-4"><span>Kategori:</span> {{ $kategori->name }}</li>
+                    <li class="grid grid-cols-4"><span>Penulis:</span> {{ $pustaka->penulis }}</li>
+                    <li class="grid grid-cols-4"><span>Penerbit:</span> {{ $pustaka->penerbit }}</li>
+                    <li class="grid grid-cols-4"><span>Tahun Rilis:</span> {{ $pustaka->tahun }}</li>
+                    <li class="grid grid-cols-4"><span>Kategori:</span> {{ $pustaka->kategori->name }}</li>
                 </ul>
             </div>
             <div class="grid justify-start mt-8">
-                <form action="{{ route('pustaka.store') }}" method="post">
+                <form action="{{ route('ulasan.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="user" value="{{ Auth::id() }}">
+                    <input type="hidden" name="buku" value="{{ $pustaka->id }}">
                     <div class="flex items-start justify-start gap-20">
                         <h3>Review Book:</h3>
                         <textarea name="komentar" class="border-2 border-black rounded-md p-1 " id="komentar" cols="50" rows="3"></textarea>
@@ -79,26 +82,66 @@
                         <label title="text" for="star1"></label>
                     </div>
                     <div class="flex gap-4 text-md mt-4">
-                        <a href="" class="bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-md">Tambah Koleksi</a>
                         <button type="submit" class="bg-green-700 hover:bg-green-800 text-white p-2 rounded-md">Posting Ulasan</button>
-                    </div>
+                </form>
+                <form action="{{ route('koleksi.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user" value="{{ Auth::id() }}">
+                    <input type="hidden" name="buku" value="{{ $pustaka->id }}">
+                    <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white p-2 px-3 rounded-md">
+                        <i class="bi bi-bookmark"></i>
+                    </button>
+                </form>
+                @if ($errors->any())
+                            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400">
+                                <ul>
+                                    @foreach ($errors->all() as $item)
+                                        <li>{{ $item }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+                <form action="{{ route('pinjam.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="user" value="{{ Auth::id() }}">
+                    <input type="hidden" name="buku" value="{{ $pustaka->id }}">
+                    {{-- <input type="hidden" name="status" value="pinjam">
+                    <input type="hidden" name="tanggal_pinjam" value="pinjam">
+                    <input type="hidden" name="tanggal_kembali" value="pinjam"> --}}
+                    <button type="submit" class="bg-blue-700 hover:bg-blue-800 text-white p-2 rounded-md">
+                        <i class="fas fa-star"></i> Pinjam Buku
+                    </button>
                 </form>
             </div>
-            <div class="grid grid-cols-4 gap-8">
-                @foreach ($ulasan as $item)
-                    <div class="bg-white p-3 shadow-md rounded-md">
-                        <div class="flex justify-between px-2">
-                            <h4>{{ $item->name }}</h4>
-                            <p>{{ $item->rating }}</p>
-                        </div>
-                        <div class="p-2">
-                            <p>{{ $item->komentar }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
         </div>
-        {{-- <div class="text-3xl font-bold text-center grid justify-center">
+        <div class="grid grid-cols-3 gap-8 my-14">
+            @foreach ($pustaka->ulasan as $item)
+            <div class="bg-white p-3 shadow-md rounded-md">
+                <div class="flex justify-between px-2">
+                    <h4>{{ $item->user->name }}</h4>
+                     <p>{{ $item->rating }}</p>
+                </div>
+                <div class="p-2">
+                    <p>{{ $item->komentar }}</p>
+                </div>
+            </div>
+            @endforeach
+            {{-- @forelse ($pustaka->ulasan as $item)
+            <div class="bg-white p-3 shadow-md rounded-md">
+                <div class="flex justify-between px-2">
+                    <h4>{{ $item->user->name }}</h4>
+                     <p>{{ $item->rating }}</p>
+                </div>
+                <div class="p-2">
+                    <p>{{ $item->komentar }}</p>
+                </div>
+            </div>
+            @empty
+                <h1>Ulasan Belum Ada</h1>
+            @endforelse --}}
+        </div>
+    </div>
+    {{-- <div class="text-3xl font-bold text-center grid justify-center">
             <h1>Book <span class="text-primary">Detail</span></h1>
         </div>
         <div class="w-full flex mr-12 mt-8">

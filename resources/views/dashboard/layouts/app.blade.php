@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - BookSpark Admin Dashboard</title>
+<link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
+
+    <title>{{ $title }} | BookSpark</title>
 
     <link rel="stylesheet" href="{{ asset('dist/assets/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{asset ('dist/assets/vendors/simple-datatables/style.css')}}">

@@ -21,6 +21,7 @@
                         </div>
                     </div>
                 </div>
+                @if (Auth::user()->role == 'admin')
                 <div class="col-12 col-md-4">
                     <div class="card card-statistic">
                         <div class="card-body p-0 h-60">
@@ -35,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <div class="col-12 col-md-4">
                     <div class="card card-statistic">
                         <div class="card-body p-0 h-60">
@@ -72,17 +74,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($data['buku'] as $item)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Jendela Terbang</td>
-                                            <td>Ridwan</td>
-                                            <td>10</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->name }}</td>
+                                            <td>{{ $item->penulis }}</td>
+                                            <td>{{ $item->stok }}</td>
                                             <td class="d-flex">
                                                 <a href="#" class="btn btn-primary btn-sm"></i></a>
                                                 <a href="#" class="btn btn-warning btn-sm"></i></a>
                                                 <a href="#" class="btn btn-danger btn-sm"></i></a>
                                             </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

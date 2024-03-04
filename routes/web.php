@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\BukuExportController;
 use App\Http\Controllers\Dashboard\BukuController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KategoriController;
 use App\Http\Controllers\Dashboard\PinjamController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\PustakaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UlasanController;
@@ -21,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [SessionController::class, 'login'])->name('login');
     Route::post('/dologin', [SessionController::class, 'dologin'])->name('dologin');
@@ -35,19 +39,29 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->group(function () {
         // Route::middleware('role:admin, petugas')->group(function () {
-            Route::resource('/buku', BukuController::class);
-            Route::resource('/kategori', KategoriController::class);
-            Route::resource('/user', UserController::class);
-            Route::resource('/kategori', KategoriController::class);
-            Route::resource('/pinjam', PinjamController::class);
-            Route::resource('/ulasan', UlasanController::class);
+        Route::resource('/buku', BukuController::class);
+        Route::resource('/kategori', KategoriController::class);
+        Route::resource('/user', UserController::class);
+        Route::resource('/kategori', KategoriController::class);
+        Route::resource('/peminjaman', PinjamController::class);
+        Route::resource('/ulasan', UlasanController::class);
         // });
     });
     Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::resource('/pustaka', PustakaController::class);
+Route::get('pustaka', [PustakaController::class, 'index'])
+    ->name('pustaka.index');
+
+Route::get('pustaka/{buku}', [PustakaController::class, 'show'])
+    ->name('pustaka.show');
+
+Route::resource('koleksi', KoleksiController::class);
+
+Route::resource('ulasan', UlasanController::class);
+
+Route::resource('pinjam', PinjamanController::class);
 
 // Route::get('/buku', function () {
 //     return view ('dashboard.buku.index');

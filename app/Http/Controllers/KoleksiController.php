@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Koleksi;
-use App\Http\Requests\StoreKoleksiRequest;
-use App\Http\Requests\UpdateKoleksiRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class KoleksiController extends Controller
 {
@@ -13,54 +13,47 @@ class KoleksiController extends Controller
      */
     public function index()
     {
-        //
+        $koleksi = Koleksi::with(['buku', 'buku.kategori'])
+            ->where('user_id', Auth::id())
+            ->latest()
+            ->get();
+
+        confirmDelete('Hapus Koleksi', 'Anda yakin ingin menghapus koleksi?');
+
+        return view('dashboard.koleksi.index')
+            ->with([
+                'title' => 'Koleksi Kamu',
+                'active' => 'koleksi',
+                'koleksi' => $koleksi,
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'user' => ['required', 'integer'],
+            'buku' => ['required', 'integer'],
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreKoleksiRequest $request)
-    {
-        //
-    }
+        Koleksi::create([
+            'user_id' => $request->input('user'),
+            'buku_id' => $request->input('buku'),
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Koleksi $koleksi)
-    {
-        //
-    }
+        toast('Koleksi ditambahkan!', 'success');
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Koleksi $koleksi)
-    {
-        //
+        return redirect()->back();
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateKoleksiRequest $request, Koleksi $koleksi)
-    {
-        //
-    }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Koleksi $koleksi)
     {
-        //
+        $koleksi->delete();
+
+        toast('Koleksi dihapus', 'success');
+
+        return redirect()->back();
     }
 }

@@ -38,6 +38,11 @@ class DashboardController extends Controller
             ];
         } else {
             $data = [
+                'sumbox' => [
+                    'buku' => Buku::count(),
+                    'pinjam' => Pinjam::count(),
+                    'ulasan' => Ulasan::count(),
+                ],
                 'pinjam' => Pinjam::where('user_id', Auth::id())
                     ->latest()
                     ->limit(5)
@@ -49,6 +54,10 @@ class DashboardController extends Controller
                     ->get(),
                 'ulasan' => Ulasan::with('buku')
                     ->where('user_id', Auth::id())
+                    ->latest()
+                    ->limit(5)
+                    ->get(),
+                'buku' => Buku::with('kategori')
                     ->latest()
                     ->limit(5)
                     ->get(),

@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon">
 
-        <title>{{ config('app.name', 'Book Spark') }}</title>
+        <title>{{ $title }} | BookSpark</title>
 
         {{-- Icon --}}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-LyBuRWaTj+zh65+C1Ad3iNizG8XfA7/b6tVKn8K/xh+3PUK1oPlmM4fcOePdZFbR2vlkPMJw58HahKppj8qbSw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -18,6 +19,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
     <body class="font-sans antialiased">
         <style>

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\BukuExport;
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BukuController extends Controller
 {
@@ -198,5 +199,9 @@ class BukuController extends Controller
 
         toast('Buku berhasil dihapus!', 'success');
         return redirect()->route('buku.index');
+    }
+
+    public function export(){
+        return Excel::download(new BukuExport, 'buku.xlsx');
     }
 }
