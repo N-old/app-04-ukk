@@ -20,7 +20,7 @@ class UlasanController extends Controller
 
         confirmDelete('Hapus Ulasan?', 'Anda yakin ingin menghapus ulasan?');
 
-        return view('dashboard.pinjam.index')
+        return view('dashboard.ulasan.index')
             ->with([
                 'title' => 'Ulasan Anda',
                 'active' => 'ulasan',
@@ -66,24 +66,6 @@ class UlasanController extends Controller
 
         return redirect()->back();
     }
-
-    /**
-     * Display the specified resource.
-     */
-    // public function show(Ulasan $ulasan)
-    // {
-    //     $ulasan->load(['user', 'buku']);
-
-    //     confirmDelete('Hapus Ulasan?', 'Anda yakin ingin menghapus ulasan?');
-
-    //     return view('dashboard.ulasan.admin.show')
-    //         ->with([
-    //             'title' => 'Detail Ulasan',
-    //             'active' => 'ulasan',
-    //             'ulasan' => $ulasan,
-    //         ]);
-    // }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -93,6 +75,6 @@ class UlasanController extends Controller
 
         toast('Ulasan berhasil dihapus.', 'success');
 
-        return redirect()->route('ulasan.index');
+        return redirect()->back();
     }
 }

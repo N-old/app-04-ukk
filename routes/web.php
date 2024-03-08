@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BukuExportController;
+use App\Http\Controllers\ExportBukuController;
 use App\Http\Controllers\Dashboard\BukuController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\KategoriController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\PinjamanController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\PustakaController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UlasanController;
@@ -32,25 +34,44 @@ Route::middleware('guest')->group(function () {
     Route::post('/doregister', [SessionController::class, 'doregister'])->name('doregister');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])
+Route::get('dashboard', [DashboardController::class, 'index'])
     ->middleware('auth')
     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::prefix('dashboard')->group(function () {
-        // Route::middleware('role:admin, petugas')->group(function () {
-        Route::resource('/buku', BukuController::class);
-        Route::resource('/kategori', KategoriController::class);
-        Route::resource('/user', UserController::class);
-        Route::resource('/kategori', KategoriController::class);
-        Route::resource('/peminjaman', PinjamController::class);
-        Route::resource('/ulasan', UlasanController::class);
-        // });
+        Route::middleware('userAcces:admin,petugas')->group(function () {
+            Route::resource('buku', BukuController::class);
+            Route::resource('kategori', KategoriController::class);
+            Route::resource('ulasan', UlasanController::class);
+            Route::get('peminjaman', [PinjamController::class, 'index'])->name('peminjaman.index');
+            Route::get('peminjaman/{pinjam}', [PinjamController::class, 'show'])->name('peminjaman.show');
+            Route::put('peminjaman/{pinjam}/edit', [PinjamController::class, 'update'])->name('peminjaman.update');
+            Route::post('peminjaman/{pinjam}/edit', [PinjamController::class, 'update'])->name('peminjaman.update');
+            Route::get('export/buku', [BukuController::class, 'export'])->name('buku.export');
+            Route::get('export/user', [UserController::class, 'export'])->name('user.export');
+            Route::get('export/pinjam', [PinjamController::class, 'export'])->name('pinjam.export');
+        });
+
+        Route::middleware('userAcces:admin')->group(function () {
+            Route::resource('user', UserController::class);
+        });
+        Route::middleware('userAcces:user')->group(function () {
+            Route::resource('koleksi', KoleksiController::class);
+        });
+        Route::prefix('pengaturan')->group(function () {
+            Route::get('profil', [ProfilController::class, 'edit'])->name('profil.edit');
+            Route::patch('profil', [ProfilController::class, 'update'])->name('profil.update');
+            Route::delete('profil', [ProfilController::class, 'destroy'])->name('profil.destroy');
+        });
     });
-    Route::get('/logout', [SessionController::class, 'logout'])->name('logout');
+    Route::get('logout', [SessionController::class, 'logout'])->name('logout');
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('', [HomeController::class, 'index'])->name('home');
+
+Route::get('about', [HomeController::class, 'about'])->name('about');
+
 Route::get('pustaka', [PustakaController::class, 'index'])
     ->name('pustaka.index');
 
@@ -59,40 +80,6 @@ Route::get('pustaka/{buku}', [PustakaController::class, 'show'])
 
 Route::resource('koleksi', KoleksiController::class);
 
-Route::resource('ulasan', UlasanController::class);
+Route::post('ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
 
 Route::resource('pinjam', PinjamanController::class);
-
-// Route::get('/buku', function () {
-//     return view ('dashboard.buku.index');
-// });
-// Route::get('/book', function () {
-//     return view('book');
-// });
-// Route::get('/book-detail', function () {
-//     return view('book-detail');
-// });
-// Route::get('/profil', function () {
-//     return view('profile');
-// });
-// Route::get('/login', function () {
-//     return view('partials.login');
-// });
-// Route::get('/register', function () {
-//     return view('partials.register');
-// });
-// Route::get('/forgot', function () {
-//     return view('partials.forgot');
-// });
-// Route::get('/dashboard', function () {
-//     return view('dashboard.dashboard');
-// });
-// Route::get('/dashboard/data-table', function () {
-//     return view('dashboard.partials.data-table');
-// });
-// Route::get('/dashboard/card-book', function () {
-//     return view('dashboard.partials.card-data');
-// });
-// Route::get('/dashboard/form', function () {
-//     return view('dashboard.partials.form');
-// });

@@ -11,10 +11,17 @@ class HomeController extends Controller
     {
         $kategori = Kategori::paginate(3);
 
-        return view('home')
+        return view('pages.home')
             ->with([
                 'title' => 'Home',
                 'kategori' => $kategori,
+            ]);
+    }
+    public function about()
+    {
+        return view('pages.about')
+            ->with([
+                'title' => 'About',
             ]);
     }
 }

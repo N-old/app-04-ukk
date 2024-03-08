@@ -290,14 +290,13 @@ var ctxBar = document.getElementById("bar").getContext("2d");
 var myBar = new Chart(ctxBar, {
     type: 'bar',
     data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        labels: ["07-03-2024", "08-03-2024"],
         datasets: [{
             label: 'Students',
             backgroundColor: [chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.info, chartColors.blue, chartColors.grey],
             data: [
                 5,
-                10,
-                30,
+                20,
                 40,
                 35,
                 55,

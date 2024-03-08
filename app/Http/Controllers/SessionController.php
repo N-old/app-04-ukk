@@ -32,19 +32,19 @@ class SessionController extends Controller
 
         if(Auth::attempt($infologin)){
             if (Auth::user()->role == 'admin') {
-                toast('Success!', 'Login Berhasil!');
+                toast('Login Berhasil!', 'success');
                 return redirect('dashboard');
             }else if (Auth::user()->role == 'petugas') {
-                toast('Success!', 'Login Berhasil!');
+                toast('Login Berhasil!', 'success');
                 return redirect('dashboard');
             }else if (Auth::user()->role == 'user') {
-                toast('Success!', 'Login Berhasil!');
+                toast('Login Berhasil!', 'success');
                 return redirect('');
             } else {
-                toast('Error!', 'Login Gagal!');
+                toast('Login Gagal!', 'error');
                 return redirect("login");
             }
-        }else{toast('Error!', 'Login Gagal!');
+        }else{toast('Login Gagal!', 'error');
             return redirect("login");
         }
     }

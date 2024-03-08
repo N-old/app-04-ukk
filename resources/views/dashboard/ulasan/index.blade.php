@@ -39,12 +39,17 @@
                             @foreach ($ulasan as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->user->name}}</td>
-                                    <td>{{ $item->buku->name}}</td>
-                                    <td>{{ $item->komentar}}</td>
-                                    <td>{{ $item->rating}}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->buku->name }}</td>
+                                    <td>{{ $item->komentar }}</td>
+                                    <td>{{ $item->rating }}</td>
                                     <td>
-                                        <a href="{{ route('peminjaman.show', $item->invoice) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Lihat Data">Detail</a>
+                                        <a href="{{ route('ulasan.destroy', $item->id) }}" class="btn btn-sm btn-danger mt-2"
+                                            data-confirm-delete="true" data-toggle="tooltip" title="Hapus Pengguna">
+                                            <div><i data-feather="trash"
+                                                onclick="event.preventDefault(); this.closest('a').click();"></i>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

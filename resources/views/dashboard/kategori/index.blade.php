@@ -47,16 +47,15 @@
                                     </td>
                                     <td>{{ $item->name }}</td>
                                     <td>
-                                        <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-warning btn-sm"><div class="form-control-icon">
+                                        <a href="{{ route('kategori.edit', $item->slug) }}" class="btn btn-warning btn-sm"><div class="form-control-icon">
                                             <i data-feather="edit"></i>
                                         </div></a>
-                                        <form method="POST" action="{{ route('kategori.destroy', $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="btn btn-danger" title="Hapus Pengguna Ini?" onclick="return confirm(&quot;Hapus Data?&quot;)"><div class="form-control-icon">
-                                                <i data-feather="trash"></i>
-                                            </div></button>
-                                        </form>
+                                        <a href="{{ route('kategori.destroy', $item->slug) }}" class="btn btn-sm btn-danger"
+                                            data-confirm-delete="true" data-toggle="tooltip" title="Hapus Pengguna">
+                                            <div><i data-feather="trash"
+                                                onclick="event.preventDefault(); this.closest('a').click();"></i>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

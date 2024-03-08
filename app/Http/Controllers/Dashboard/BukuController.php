@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Exports\BukuExport;
 use App\Http\Controllers\Controller;
 use App\Models\Buku;
+use App\Models\Kategori;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
-use App\Models\Kategori;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use App\Exports\BukuExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class BukuController extends Controller
@@ -46,7 +46,7 @@ class BukuController extends Controller
                 'title' => 'Tambah Data Buku',
                 'active' => 'buku',
                 'kategori' => $kategori,
-        ]);
+            ]);
     }
 
     /**
@@ -82,7 +82,7 @@ class BukuController extends Controller
             ]);
 
             $file = $request->file('cover');
-            $gambar = $slug. '.' . $file->extension();
+            $gambar = $slug . '.' . $file->extension();
             $file->move(public_path('storage/buku'), $gambar);
             $buku['cover'] = '/storage/buku/' . $gambar;
         }
@@ -164,7 +164,7 @@ class BukuController extends Controller
             ]);
 
             $file = $request->file('cover');
-            $gambar = $slug. '.' . $file->extension();
+            $gambar = $slug . '.' . $file->extension();
 
             if ($buku->gambar !== '/images/buku.png') {
                 File::delete(public_path($buku->gambar));
@@ -201,7 +201,8 @@ class BukuController extends Controller
         return redirect()->route('buku.index');
     }
 
-    public function export(){
+    public function export()
+    {
         return Excel::download(new BukuExport, 'buku.xlsx');
     }
 }

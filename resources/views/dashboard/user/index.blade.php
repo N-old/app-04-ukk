@@ -21,7 +21,18 @@
             <div class="card">
                 <div class="card-header">
                     {{ $title }}
-                    <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm float-end">Tambah</a>
+                    <div class="">
+                        <a href="{{ route('user.create') }}" class="btn btn-primary btn-sm float-end ml-3">
+                            <div class="form-control-icon">
+                                <i data-feather="plus"></i>
+                            </div>
+                        </a>
+                        <a href="{{ route('user.export')}}" class="btn btn-primary btn-sm float-end">
+                            <div class="form-control-icon">
+                                <i data-feather="file-text"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table class='table table-striped' id="table1">
@@ -56,19 +67,19 @@
                                     <td>{{ $item->telepon }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>
-                                        <a href="{{ route('user.show', $item->id) }}" class="btn btn-sm btn-info"
+                                        <a href="{{ route('user.show', $item->slug) }}" class="btn btn-sm btn-info"
                                             data-toggle="tooltip" title="Lihat Pengguna">
                                             <div class="form-control-icon">
                                                 <i data-feather="eye"></i>
                                             </div>
                                         </a>
-                                        <a href="{{ route('user.edit', $item->id) }}" class="btn btn-sm btn-warning"
+                                        <a href="{{ route('user.edit', $item->slug) }}" class="btn btn-sm btn-warning"
                                             data-toggle="tooltip" title="Edit Pengguna">
                                             <div class="form-control-icon">
                                                 <i data-feather="edit"></i>
                                             </div>
                                         </a>
-                                        <a href="{{ route('user.destroy', $item->id) }}" class="btn btn-sm btn-danger mt-2"
+                                        <a href="{{ route('user.destroy', $item->slug) }}" class="btn btn-sm btn-danger mt-2"
                                             data-confirm-delete="true" data-toggle="tooltip" title="Hapus Pengguna">
                                             <div><i data-feather="trash"
                                                 onclick="event.preventDefault(); this.closest('a').click();"></i>

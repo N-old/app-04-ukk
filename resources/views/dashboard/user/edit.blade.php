@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-vertical" action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
+                            <form class="form form-vertical" action="{{ route('user.update', $user->slug) }}" method="POST" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
                                 <div class="form-body">

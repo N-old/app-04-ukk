@@ -15,7 +15,7 @@ class PustakaController extends Controller
         $pustaka = Buku::with('kategori')
             ->orderBy('name')
             ->get();
-        return view('book')
+        return view('pages.book')
             ->with([
                 'title' => 'Halaman Buku',
                 'pustaka' => $pustaka
@@ -41,7 +41,7 @@ class PustakaController extends Controller
             ->where('buku_id', $buku->id)
             ->exists();
         
-        return view('book-detail')
+        return view('pages.book-detail')
             ->with([
                 'title' => 'Halaman Detail Buku',
                 'pustaka' => $pustaka,

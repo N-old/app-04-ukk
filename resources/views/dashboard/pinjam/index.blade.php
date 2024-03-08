@@ -21,18 +21,23 @@
             <div class="card">
                 <div class="card-header">
                     {{ $title }}
+                    <a href="{{ route('pinjam.export') }}" class="btn btn-primary btn-sm float-end">
+                        <div class="form-control-icon">
+                            <i data-feather="file-text"></i>
+                        </div>
+                    </a>
                 </div>
                 <div class="card-body">
                     <table class='table table-striped' id="table1">
                         <thead>
                             <tr>
                                 <th class="text-center">No</th>
-                                <th>Invoice ID</th>
                                 <th>Peminjam</th>
-                                <th>Waktu</th>
-                                <th>Tanggal Pinjam</th>
-                                <th>Tenggat Pengembalian</th>
-                                <th>Tanggal Kembali</th>
+                                <th>Buku Yang Dipinjam</th>
+                                <th>Waktu Peminjaman</th>
+                                <th>Tanggal Peminjaman</th>
+                                <th>Tenggat Peminjaman</th>
+                                <th>Tanggal Pengembalian</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -42,31 +47,39 @@
                             @foreach ($pinjam as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->invoice }}</td>
                                     <td>
-                                        <a href="{{ route('user.show', $item->user->id) }}">{{ $item->user->name }}</a>
+                                        <a href="{{ route('user.show', $item->user->slug) }}">{{ $item->user->name }}</a>
                                     </td>
+                                    <td>
+                                        <a href="{{ route('buku.show', $item->buku->slug) }}">{{ $item->buku->name }}</a>
+                                    </td>
+                                    {{-- <td>{{ $item->user->name }}</td>
+                                    <td>{{ $item->buku->name }}</td> --}}
                                     <td>{{ $item->created_at->format('j-n-Y') }}</td>
                                     <td>{{ $item->tanggal_pinjam ?? '-' }}</td>
                                     <td>{{ $item->tenggat ?? '-' }}</td>
                                     <td>{{ $item->tanggal_kembali ?? '-' }}</td>
                                     <td>
+                                        {{-- {{ $item->status }} --}}
                                         @switch($item->status)
-                                            @case('0')
-                                                <div class="badge badge-info">Dipinjam</div>
-                                                @break
-                                            @case('1')
-                                                <div class="badge badge-success">Dikembalikan</div>
-                                                @break
-                                            @default
+                                            @case('pinjam')
+                                                <span class="badge bg-info">Dipinjam</span>
+                                            @break
+
+                                            @case('kembali')
+                                                <span class="badge bg-success">Dikembalikan</span>
+                                            @break
                                         @endswitch
-                                    </td>
                                     <td>
-                                        <a href="{{ route('peminjaman.show', $item->invoice) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Lihat Data">Detail</a>
+                                        <a href="{{ route('peminjaman.show', $item->slug) }}" class="btn btn-sm btn-info"
+                                            data-toggle="tooltip" title="Lihat Pengguna">
+                                            <div class="form-control-icon">
+                                                <i data-feather="eye"></i>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
-                            {{-- End Looping Peminjaman --}}
                         </tbody>
                     </table>
                 </div>

@@ -12,6 +12,11 @@ class Kategori extends Model
 
     protected $guarded = ['id'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function buku()
     {
         return $this->hasMany(Buku::class, 'kategori_id');

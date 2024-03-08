@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\PinjamExport;
 use App\Http\Controllers\Controller;
 use App\Models\Pinjam;
-use App\Http\Requests\UpdatePinjamRequest;
-use App\Models\Buku;
+use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PinjamController extends Controller
 {
@@ -14,7 +15,7 @@ class PinjamController extends Controller
      */
     public function index()
     {
-        $peminjaman = Pinjam::with('user')
+        $pinjam = Pinjam::with('user')
             ->orderBy('user_id')
             ->get();
 
@@ -24,7 +25,7 @@ class PinjamController extends Controller
             ->with([
                 'title' => 'Data Peminjaman',
                 'active' => 'peminjaman',
-                'peminjaman' => $peminjaman,
+                'pinjam' => $pinjam,
         ]);
     }
     /**
@@ -32,7 +33,7 @@ class PinjamController extends Controller
      */
     public function show(Pinjam $pinjam)
     {
-        $pinjam -> load('user', 'detail', 'detail.buku', 'detail.buku.kategori');
+        $pinjam -> load('user', 'buku');
         return view('dashboard.pinjam.show')
             ->with([
                 'title' => 'Detail Peminjaman',
@@ -43,40 +44,27 @@ class PinjamController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePinjamRequest $request, Pinjam $pinjam)
+    public function update(Request $request, Pinjam $pinjam)
     {
-        if ($request->status === '1') {
+        if ($request->status === 'pinjam') {
             $pinjam->update([
-                'tgl_pinjam' => now(),
-                'tenggat' => now()->addDays(14),
                 'status' => $request->status,
             ]);
 
-            foreach ($pinjam->detail as $detail) {
-                $buku = Buku::find($detail->buku_id);
-                if ($buku) {
-                    $buku->pinjam += $detail->jumlah;
-                    $buku->save();
-                }
-            }
-        } else if ($request->status === '2') {
+        } else if ($request->status === 'kembali') {
             $pinjam->update([
-                'tgl_kembali' => now(),
+                'tanggal_kembali' => now(),
                 'status' => $request->status,
             ]);
-
-            foreach ($pinjam->detail as $detail) {
-                $buku = Buku::find($detail->buku_id);
-                if ($buku) {
-                    $buku->pinjam -= $detail->jumlah;
-                    $buku->save();
-                }
-            }
         }
 
         toast('Peminjaman berhasil diupdate!', 'success');
 
-        return redirect()->back();
+        return redirect('dashboard/peminjaman');
     }
 
+    public function export()
+    {
+        return Excel::download(new PinjamExport, 'Data Peminjaman.xlsx');
+    }
 }

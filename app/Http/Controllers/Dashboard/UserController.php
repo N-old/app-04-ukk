@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -183,5 +185,10 @@ class UserController extends Controller
 
         toast('User berhasil dihapus!', 'success');
         return redirect()->route('user.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'Data Pengguna.xlsx');
     }
 }

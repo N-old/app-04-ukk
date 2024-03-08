@@ -51,6 +51,22 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="row">
+                    <section class="section">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">Chart Buku</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <canvas id="bar"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div> --}}
             </div>
             <div class="row mb-4">
                 <div class="col-md-8">
@@ -80,10 +96,19 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->penulis }}</td>
                                             <td>{{ $item->stok }}</td>
-                                            <td class="d-flex">
-                                                <a href="#" class="btn btn-primary btn-sm"></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"></i></a>
+                                            <td class="grid gap-1 d-flex">
+                                                <a href="{{ route('buku.edit', $item->slug) }}" class="btn btn-sm btn-warning"
+                                                    data-toggle="tooltip" title="Edit Pengguna">
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="edit"></i>
+                                                    </div>
+                                                </a>
+                                                <a href="{{ route('buku.destroy', $item->slug) }}" class="btn btn-sm btn-danger"
+                                                    data-confirm-delete="true" data-toggle="tooltip" title="Hapus Pengguna">
+                                                    <div><i data-feather="trash"
+                                                            onclick="event.preventDefault(); this.closest('a').click();"></i>
+                                                    </div>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -96,67 +121,37 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4 class="card-title">Data User</h4>
-                            <div class="d-flex ">
-                                <i data-feather="download"></i>
-                            </div>
+                            <h4 class="card-title">Data Peminjaman</h4>
                         </div>
                         <div class="card-body px-0 pb-0">
                             <div class="table-responsive">
                                 <table class='table mb-0' id="table1">
                                     <thead>
                                         <tr>
-                                            <th>Nama</th>
+                                            <th>#</th>
                                             <th>Peminjam</th>
+                                            <th>Buku</th>
+                                            <th>Status Peminjaman</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($data['pinjam'] as $item)
                                         <tr>
-                                            <td>Ridwan</td>
-                                            <td>Jendela Terbang</td>
-                                            <td class="flex">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-regular fa-eye"></i></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->buku->name }}</td>
+                                            <td>{{ $item->status }}</td>
+                                            <td class="grid gap-1 d-flex">
+                                                <a href="{{ route('peminjaman.show', $item->slug) }}" class="btn btn-sm btn-warning"
+                                                    data-toggle="tooltip" title="Edit Pengguna">
+                                                    <div class="form-control-icon">
+                                                        <i data-feather="eye"></i>
+                                                    </div>
+                                                </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Ridwan</td>
-                                            <td>Jendela Terbang</td>
-                                            <td class="flex">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-regular fa-eye"></i></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ridwan</td>
-                                            <td>Jendela Terbang</td>
-                                            <td class="flex">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-regular fa-eye"></i></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ridwan</td>
-                                            <td>Jendela Terbang</td>
-                                            <td class="flex">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-regular fa-eye"></i></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ridwan</td>
-                                            <td>Jendela Terbang</td>
-                                            <td class="flex">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-regular fa-eye"></i></i></a>
-                                                <a href="#" class="btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></i></a>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

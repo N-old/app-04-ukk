@@ -23,6 +23,10 @@ class DashboardController extends Controller
                     'ulasan' => Ulasan::count(),
                     'user' => User::where('role', 'user')->count(),
                 ],
+                // 'chart' => [
+                //     'labels' => ['January', 'February', 'March', 'April', 'May'],
+                //     'data' => [65, 59, 80, 81, 56],
+                // ],
                 'pinjam' => Pinjam::with('user')
                     ->latest()
                     ->limit(5)
@@ -52,15 +56,11 @@ class DashboardController extends Controller
                     ->latest()
                     ->limit(5)
                     ->get(),
-                'ulasan' => Ulasan::with('buku')
-                    ->where('user_id', Auth::id())
-                    ->latest()
-                    ->limit(5)
-                    ->get(),
                 'buku' => Buku::with('kategori')
                     ->latest()
                     ->limit(5)
                     ->get(),
+                'user' => User::where('id', Auth::id())
             ];
         }
         

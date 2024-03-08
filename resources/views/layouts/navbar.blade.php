@@ -17,8 +17,8 @@
         <div class="flex gap-2 items-center">
             <img src="{{ asset(auth()->user()->foto) }}" class="w-7 rounded-full" alt="foto">
             <div class="grid">
-                <a href="/profil" class=" text-white font-semibold text-sm">{{ auth()->user()->name }}</a>
-                <a href="/profil" class=" text-white font-semibold text-xs">{{ auth()->user()->role }}</a>
+                <a href="{{route('dashboard')}}" class=" text-white font-semibold text-sm">{{ auth()->user()->name }}</a>
+                <a href="{{route('dashboard')}}" class=" text-white font-semibold text-xs">{{ auth()->user()->role }}</a>
             </div>
         </div>
         @endif

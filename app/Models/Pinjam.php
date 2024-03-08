@@ -11,8 +11,17 @@ class Pinjam extends Model
 
     protected $guarded = ['id'];
 
-    public function detail()
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    public function user()
     {
-        return $this->hasMany(detailPinjam::class, 'pinjam_id');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function buku()
+    {
+        return $this->belongsTo(Buku::class, 'buku_id');
     }
 }
